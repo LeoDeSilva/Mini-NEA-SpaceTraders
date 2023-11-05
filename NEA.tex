@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\input{preamble.tex}
+
+\begin{document}
+\input{titlepage.tex}
+\tableofcontents
+\newpage
+
+\section{Analysis}
+\subsection{Research}
+\subsection{Interviews}
+\subsection{Objectives}
+\subsection{Technical Analysis}
+
+\section{Design}
+\subsection{Development Environment}
+\subsection{Bootloader}
+\subsection{Kernel}
+\subsection{File System}
+
+\section{Technical Solution}
+\subsection{Bootloader}
+\subsection{Kernel}
+\subsection{File System}
+
+\section{Testing}
+\section{Evaluation}
+
+
+Magna quis ipsum culpa laborum aute duis nostrud ullamco commodo deserunt dolor. Fugiat tempor veniam culpa fugiat voluptate amet officia adipisicing incididunt reprehenderit qui sit. Velit incididunt minim laborum et ut deserunt ad nisi laboris tempor. Veniam incididunt aute culpa est quis laborum aliquip duis voluptate laborum. Id do adipisicing voluptate sit exercitation ut quis est ad dolor veniam.
+
+\begin{lstlisting}[language=C]
+enum EventType {
+	KEY_DOWN,
+	NIL,
+};
+
+union event {
+	enum EventType type;
+	struct KeyDownEvent {
+		enum EventType type;
+		int keycode;
+		int scancode;
+	} keydown;
+};
+\end{lstlisting}
+
+Elit mollit ad officia quis non culpa labore ipsum labore exercitation quis occaecat fugiat ea minim. Minim minim adipisicing irure fugiat incididunt anim elit. Nisi fugiat irure nulla. Reprehenderit do Lorem qui sunt voluptate enim aute reprehenderit nisi ea.
+
+Aliqua pariatur eu ipsum ipsum incididunt pariatur ex sunt culpa est nulla laborum eu labore. Irure labore pariatur quis ex incididunt non anim cillum. Duis mollit irure Lorem qui et exercitation incididunt exercitation ut. Nisi aliqua duis est sunt adipisicing cillum labore duis adipisicing consectetur velit anim exercitation et mollit. Incididunt quis do occaecat cupidatat aliquip est reprehenderit consequat cupidatat consequat commodo in elit. Fugiat laborum sint id adipisicing magna amet amet voluptate labore culpa non dolore velit enim eu. Consequat non incididunt adipisicing ad id occaecat fugiat fugiat dolor magna ex proident velit ex.
+
+\begin{lstlisting}[language={[x86masm]Assembler}]
+[extern isr_handler]
+[extern irq_handler]
+
+; Common ISR code
+isr_common_stub:
+    ; 1. Save CPU state
+	pusha 		 ; Pushes edi,esi,ebp,esp,ebx,edx,ecx,eax
+	mov ax, ds   ; Lower 16-bits of eax = ds.
+	push eax	 ; save the data segment descriptor
+	mov ax, 0x10 ; kernel data segment descriptor
+	mov ds, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+    push esp
+	
+    ; 2. Call C handler
+    cld 	; C code following the sysV ABI requires DF 
+			; to be clear on function entry
+	call isr_handler
+	
+    ; 3. Restore state
+    pop eax
+	pop eax 
+	mov ds, ax
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+	popa
+	add esp, 8 	; Cleans up the pushed error code and 
+				; pushed ISR number
+	iret 		; pops 5 things at once: CS, EIP, 
+				; EFLAGS, SS, and ESP
+\end{lstlisting}
+
+Ipsum ullamco velit ipsum excepteur laboris sunt nostrud aliqua nostrud esse qui dolor dolor. Commodo sint deserunt veniam laboris ut consectetur dolore ut mollit nulla dolor proident. Nisi commodo voluptate excepteur ea ipsum ullamco. Lorem magna commodo sunt et laboris velit. Enim anim consequat tempor eiusmod reprehenderit excepteur aliquip est labore esse reprehenderit consequat laboris esse. Proident quis amet irure ad et mollit non sunt veniam.
+
+Labore labore laboris sunt veniam reprehenderit minim consectetur. Tempor fugiat fugiat nulla nisi. Laborum reprehenderit non Lorem. Ipsum Lorem elit laborum cupidatat. Nostrud nostrud non nostrud laborum esse id exercitation est. Labore non ea in officia incididunt elit amet consequat. Ipsum minim fugiat reprehenderit magna nulla tempor mollit.
+
+\end{document}
