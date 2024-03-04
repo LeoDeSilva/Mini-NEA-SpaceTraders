@@ -137,8 +137,9 @@ func main() {
 Due to its stability, performance, security and mature, centralised ecosystem I will use rust for this project. Although Rust’s somewhat convoluted approach to asynchronous programming will require careful design considerations as to not introduce bugs. 
 
 \subsection{API}
+The core gameplay loop revolves around accepting loans, and performing mining operations to gather the required resources to repay those loans. Credits can then be used to improve your fleet and in turn, increase one's mining capacity – allowing larger loans to be taken for more credits.
 
-The Space Traders API offers HTTP end points with which programs can access, and in turn: play the open universe trading game. The breadth of available features ranges from locating all available shipyards in a system:
+The Space Traders API offers HTTP end-points with which programs can access, and in turn: play the open universe trading game. Actions are performed via http requests to the Space Traders server, and such actions can range from locating all available shipyards in a system:
 \begin{lstlisting}
     curl 'https://api.spacetraders.io/v2/systems/:systemSymbol/waypoints?traits=SHIPYARD' --header 'Authorization: Bearer INSERT\_TOKEN\_HERE'
 
@@ -156,4 +157,17 @@ curl --request POST \
    }'
 \end{lstlisting}
 
-However, there are 2 versions of the SpaceTraders API in production, the complete V1, and the alpha V2. The former is simpler, more mature, and yet lacks much of the functionality of the second release.  Whereas V2 consists of a larger universe, a wider breadth of features, and comprehensive documentation. Thus, my project will utilise the V2 API specification albeit hesitant of potential bugs due to the alpha nature of its release. 
+However, there are 2 versions of the SpaceTraders API in production, the complete V1, and the alpha V2 release. The former is a simpler system, more mature, and has a wider variety of existing frontend clients to learn from. Yet lacks much of the functionality of the second release.  Whereas V2 consists of a larger universe, a wider breadth of features, and comprehensive documentation. Thus, my project will utilise the V2 API specification albeit hesitant of potential bugs due to the alpha nature of its release. 
+
+\subsection{Existing Systems}
+There are various existing frontends that use either a command line interface (CLI), or a graphical user interface (GUI) to different effects. A command line interface (as illustrated below) allows for expediated development, however can appear confusing, intimidating, and untintuitive without experience.
+\bigskip
+
+\shadowbox{\includegraphics[width=12cm]{trade-commander.png}}
+
+
+
+However a GUI provides a visually intuitive experience, \cite{knuthwebsite}offering buttons, icons and menus in place of complex commands and a level of visual feedback that cannot be replicated through a command line. However, GUI development requires significantly more time and resources – often sarcificing flexibility and efficiency for ease of use.
+
+\bigskip
+\shadowbox{\includegraphics[width=12cm]{deliverance.png}}
