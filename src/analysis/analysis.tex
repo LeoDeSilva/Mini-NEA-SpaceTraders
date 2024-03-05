@@ -1,6 +1,6 @@
 \section{Analysis}
 \subsection{Problem Defenition}
-This project aims to produce a user-friendly means to interact with the SpaceTraders API, an online space trading game that uses http requests to communicate with the server and perform relevant actions. The core gameplay loop revolves around accepting loans, and performing mining operations to gather the required resources to repay those loans. Credits can then be used to improve your fleet and in turn, increase one's mining capacity – allowing larger loans to be taken for more credits.
+This project aims to produce a user-friendly means to interact with the SpaceTraders API, an online space trading game that uses http requests to communicate with the server and manage a fleet of ships, however that lacks a frontend client for users to interact with. The core gameplay loop revolves around accepting loans, and performing mining operations to gather the required resources to repay those loans. Credits can then be used to improve your fleet and in turn, increase one's mining capacity – allowing larger loans to be taken for more credits.
 
 \subsection{Programming Language}
 The first decision to make regarding to this project is that of programming language – more specifically a choice between two stable, statically typed languages with strong module support and asynchronous runtimes. Go and Rust. The former (renowned for its simplicity and concurrency) would offer an expediated development cycle with an extensive standard library. Rust, however, offers memory safety, performance and a strict typing system – enforcing good programming practices. In addition to a superior multiplatform bundler for distributing the program as a single binary without dependencies. Furthermore, Rust has a more mature and documented ecosystem for Terminal User Interfaces (TUI) and Command Line Interfaces (CLI) – which I intend to explore as a means for the user to interact with the API. Below is the same program demonstrating registration with the SpaceTraders API written in Rust and Go respectively to illustrate their differences. 
@@ -135,7 +135,7 @@ func main() {
 }
 \end{lstlisting}
 
-Due to its stability, performance, security and mature, centralised ecosystem I will use rust for this project. Although Rust’s somewhat convoluted approach to asynchronous programming will require careful design considerations as to not introduce bugs. 
+Due to its stability, performance, security and mature, centralised ecosystem I will use rust for this project. Although Rust’s somewhat convoluted approach to asynchronous programming will require careful design considerations as to not introduce bugs. And it's combination of a restrictive borrow checker and strict compiler enforces good programming practices and memory safety, with verbose handling of all potential errors mitigting the risk of crashes and ensuring programs are always stable, performant and reliable. 
 
 \subsection{API}
 A web API (Application Programming Interface) is a set of standard protocols to interact with a web server. The Space Traders API offers HTTP end-points with which programs can access, and in turn: play the open universe trading game. Actions are performed via http requests to the Space Traders server, and such actions can range from locating all available shipyards in a system (\textcite{spacetraders}):
@@ -159,16 +159,16 @@ curl --request POST \
 However, there are 2 versions of the SpaceTraders API in production, the complete V1, and the alpha V2 release. The former is a simpler system, more mature, and has a wider variety of existing frontend clients to learn from. Yet lacks much of the functionality of the second release.  Whereas V2 consists of a larger universe, a wider breadth of features, and comprehensive documentation. (\textcite{spacetraders}) Thus, my project will utilise the V2 API specification albeit hesitant of potential bugs due to the alpha nature of its release. 
 
 \subsection{Existing Systems}
-There are various existing frontends that use either a command line interface (CLI), or a graphical user interface (GUI) to interract with the SpaceTraders API. A command line interface (as illustrated below) allows for expediated development, however can appear confusing, intimidating, and untintuitive without experience, wheras a GUI whilst visually intuitive, offers less flexibility and a slower development cycle. 
+There are various existing frontends that use either a command line interface (CLI), or a graphical user interface (GUI) to interract with the SpaceTraders API. A command line interface (as illustrated below) allows for expediated development, however can appear confusing, intimidating, and untintuitive without experience, wheras a GUI whilst visually intuitive, offers less flexibility and a slower development cycle. A common thread between all clients is the manner in which systems distill the complex http queries into a simpler interface when interacting with the server.
 \bigskip
 
-\shadowbox{\includegraphics[width=12cm]{trade-commander.png}}
+\shadowbox{\includegraphics[width=11cm]{trade-commander.png}}
 
-Trade Commander (\textcite{tradecommander}) is a CLI client for the SpaceTraders API that uses a split screen approach where commands are input in the console on the left and their output shown graphically through the display on the right. Trade Commander thus merges the flexibility of textual interfaces with the intuitiveness of a GUI.  
+Trade Commander (\textcite{tradecommander}) is a CLI client for the SpaceTraders API that uses a split screen approach where commands are input in the console on the left and their output shown graphically through the display on the right. Trade Commander thus merges the flexibility of textual interfaces with the intuitiveness of a GUI. It offers a dashboard layout where commonly relevant information can be accessed at a glance: such as ones fleet, star map, owed loans, and trade market. This has the advantage of being efficient to use, however comprises a considerable learning curve when initially getting started with Space Traders.  
 
 \bigskip
-\shadowbox{\includegraphics[width=12cm]{deliverance.png}}
+\shadowbox{\includegraphics[width=11cm]{deliverance.png}}
 
-Deliverance (\textcite{deliverance}) took a different approach, opting for a graphical UI, synthesising the http requests required to interact with the API into a series of menus and buttons that are intuitive to work with. Stumblinbear has organised the available operations into 4 categories: Home, Ships, Systems, and Market. This has the advantage of being comparatively easy to work with, however will slow down development due to the resources needed to create a graphical interface and limits the flexibility of the system.
+Deliverance (\textcite{deliverance}) took a different approach, opting for a graphical UI, synthesising the http requests required to interact with the API into a series of menus and buttons that are intuitive to work with. Stumblinbear has organised the available operations into 4 categories: Home, Ships, Systems, and Market. This has the advantage of being comparatively easy to work with, however will slow down development due to the resources needed to create a graphical interface and limits the flexibility of the system when adding new functionality.
 
-In conclusion, I will approach my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements, creating a more 'retro' aesthetic that suits the nature of the game. Both systems abstract away the http requests from the end user, opting for a simpler interface when interracting with the server. 
+In conclusion, I will look at approaching my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements, creating a more 'retro' aesthetic that suits the nature of the game. 
