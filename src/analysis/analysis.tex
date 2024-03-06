@@ -172,3 +172,19 @@ Trade Commander (\textcite{tradecommander}) is a CLI client for the SpaceTraders
 Deliverance (\textcite{deliverance}) took a different approach, opting for a graphical UI, synthesising the http requests required to interact with the API into a series of menus and buttons that are intuitive to work with. Stumblinbear has organised the available operations into 4 categories: Home, Ships, Systems, and Market. This has the advantage of being comparatively easy to work with, however will slow down development due to the resources needed to create a graphical interface and limits the flexibility of the system when adding new functionality.
 
 In conclusion, I will look at approaching my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements, creating a more 'retro' aesthetic that suits the nature of the game. 
+
+\subsection{Client Proposal}
+The set of features I will propose to my client is as following:
+\begin{enumerate}
+    \item A Terminal User Interface (TUI) comprising of a command line and graphical interface.
+    \item The ability to register or login to an account using an access token.
+    \item The ability to purchase ships and manage one's fleet.
+    \item The ability to take out and repay loans.
+    \item The ability to manage one's mining operations.
+    \item The ability to visually display a map of the star system.
+    \item The ability to query \& display data logically \textit{(e.g. sort available ships by price)}
+\end{enumerate}
+
+My system will use integrate aspects of both a CLI and GUI. The console permits the flexibility of input that is limited by a GUI, and the graphical interface can display the results of such commands or other relevant information to the user, including but not limited too: a map of the star system, the progress of ongoing mining operations, any pending loans etc... My system will include means of querying data from the API which can be sorted and displayed according to the user's requirements, such as ordering loans by their reward, or displaying all unsold ships in the system. 
+
+\subsubsection{Client Interview}
