@@ -1,7 +1,7 @@
 open: build/NEA.pdf
 	sioyek build/NEA.pdf
 
-build/NEA.pdf: NEA.tex ./src/*.tex ./src/analysis/*.tex ./src/design/*.tex
+build/NEA.pdf: NEA.tex NEA.bib ./src/*.tex ./src/analysis/*.tex ./src/design/*.tex
 	biber --output-directory build NEA
 	pdflatex -output-directory=build -aux-directory=build NEA.tex
 
