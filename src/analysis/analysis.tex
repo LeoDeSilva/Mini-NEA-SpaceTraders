@@ -5,6 +5,7 @@ This project aims to produce a user-friendly means to interact with the SpaceTra
 \subsection{Programming Language}
 The first decision to make regarding to this project is that of programming language – more specifically a choice between two stable, statically typed languages with strong module support and asynchronous runtimes. Go and Rust. The former (renowned for its simplicity and concurrency) would offer an expediated development cycle with an extensive standard library. Rust, however, offers memory safety, performance and a strict typing system – enforcing good programming practices. In addition to a superior multiplatform bundler for distributing the program as a single binary without dependencies. Furthermore, Rust has a more mature and documented ecosystem for Terminal User Interfaces (TUI) and Command Line Interfaces (CLI) – which I intend to explore as a means for the user to interact with the API. Below is the same program demonstrating registration with the SpaceTraders API written in Rust and Go respectively to illustrate their differences. 
 
+\subsubsection{Prototyping}
 \begin{lstlisting}[language=C]
 use std::collections::HashMap;
 use reqwest::{Client, Error};
@@ -65,7 +66,7 @@ $ http_prototype git:(master): cargo run
 
 The equivalent Go code, due to its simplicity, can be tedious and lengthy to write. 
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C]
 package main
 
 import (
