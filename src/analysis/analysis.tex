@@ -2,6 +2,21 @@
 \subsection{Problem Defenition}
 This project aims to produce a user-friendly means to interact with the SpaceTraders API, an online space trading game that uses http requests to communicate with the server and manage a fleet of ships, however that lacks a frontend client for users to interact with. The core gameplay loop revolves around accepting loans, and performing mining operations to gather the required resources to repay those loans. Credits can then be used to improve your fleet and in turn, increase one's mining capacity – allowing larger loans to be taken for more credits.
 
+To play Space Traders you must first register yourself a callsign e.g. (L3O, TR4D3R etc..) which identifies an agent. Contracts, ships, and credits are all associated with an agent identity. The Space Traders universe is composed of systems and waypoints. Waypoints are locations within a system such as a planet, moon or asteroid, and consist of a type, x-y coordinates, and set of features such as a shipyard or marketplace. Ships can navigate between waypoints or warp between systems. An agent earns credits by taking contracts with a deadline and requirements for completion e.g. (deliver "205 IRON\_ORE" to destination: "X1-QT13-H53" by "2024-03-15T12:04:25.707Z"). 
+
+To complete a mining contract, you must locate an asteroid containing the required ore, and send your purchased mining droid to mine the resource. Cargo can then be sold at marketplaces to earn credits and offload cargo, with variable market rates for each resource depending on the volume being traded; which affects both the stability and magnitude of the market price. 
+
+Since SpaceTraders lacks a frontend for users to interact with, actions are performed via http requests sent to the Space Traders server. For example, this request to navigate to the waypoint X1-QT13-H53:
+\begin{lstlisting}
+curl --request POST \
+ --url 'https://api.spacetraders.io/v2/my/ships/L30_DE-1/navigate' \
+ --header 'Authorization: Bearer eyJ[...]pQw' \
+ --header 'Content-Type: application/json' \
+ --data '{
+    "waypointSymbol": "X1-QT13-H53"
+   }'
+\end{lstlisting}
+
 \subsection{Programming Language}
 The first decision to make regarding to this project is that of programming language – more specifically a choice between two stable, statically typed languages with strong module support and asynchronous runtimes. Go and Rust. The former (renowned for its simplicity and concurrency) would offer an expediated development cycle with an extensive standard library. Rust, however, offers memory safety, performance and a strict typing system – enforcing good programming practices. In addition to a superior multiplatform bundler for distributing the program as a single binary without dependencies. Furthermore, Rust has a more mature and documented ecosystem for Terminal User Interfaces (TUI) and Command Line Interfaces (CLI) – which I intend to explore as a means for the user to interact with the API. Below is the same program demonstrating registration with the SpaceTraders API written in Rust and Go respectively to illustrate their differences. 
 
@@ -141,8 +156,7 @@ Due to its stability, performance, security and mature, centralised ecosystem I 
 \subsection{API}
 A web API (Application Programming Interface) is a set of standard protocols to interact with a web server. The Space Traders API offers HTTP end-points with which programs can access, and in turn: play the open universe trading game. Actions are performed via http requests to the Space Traders server, and such actions can range from locating all available shipyards in a system (\textcite{spacetraders}):
 \begin{lstlisting}
-    curl 'https://api.spacetraders.io/v2/systems/:systemSymbol/waypoints?traits=SHIPYARD' --header 'Authorization: Bearer INSERT\_TOKEN\_HERE'
-
+curl 'https://api.spacetraders.io/v2/systems/:systemSymbol/waypoints?traits=SHIPYARD' --header 'Authorization: Bearer INSERT\_TOKEN\_HERE'
 \end{lstlisting}
 To selling ship cargo:
 
