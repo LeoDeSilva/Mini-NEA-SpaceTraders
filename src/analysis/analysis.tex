@@ -16,6 +16,7 @@ curl --request POST \
     "waypointSymbol": "X1-QT13-H53"
    }'
 \end{lstlisting}
+My project will be to produce a frontend client to interact with the Space Traders API in a user-friendly manner, and will be targeted towards someone with at least a basic understanding of the command line – thus comfortable using commands to manage their fleet. However new to the game of Space Traders. 
 
 \subsection{Programming Language}
 The first decision to make regarding to this project is that of programming language – more specifically a choice between two stable, statically typed languages with strong module support and asynchronous runtimes. Go and Rust. The former (renowned for its simplicity and concurrency) would offer an expediated development cycle with an extensive standard library. Rust, however, offers memory safety, performance and a strict typing system – enforcing good programming practices. In addition to a superior multiplatform bundler for distributing the program as a single binary without dependencies. Furthermore, Rust has a more mature and documented ecosystem for Terminal User Interfaces (TUI) and Command Line Interfaces (CLI) – which I intend to explore as a means for the user to interact with the API. Below is the same program demonstrating registration with the SpaceTraders API written in Rust and Go respectively to illustrate their differences. 
@@ -189,7 +190,7 @@ Deliverance (\textcite{deliverance}) took a different approach, opting for a gra
 In conclusion, I will look at approaching my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements, creating a more 'retro' aesthetic that suits the nature of the game. 
 
 \subsection{Client Proposal}
-The set of features I will propose to my client is as following:
+My client for this project will be someone with at least a basic understanding of the command line, and new to the game of SpaceTraders. The set of features I will propose is as following:
 \begin{enumerate}
     \item A Terminal User Interface (TUI) comprising of a command line and graphical interface.
     \item The ability to register or login to an account using an access token.
