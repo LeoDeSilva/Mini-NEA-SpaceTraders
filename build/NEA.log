@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.3)  11 MAR 2024 14:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.3)  11 MAR 2024 17:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -540,10 +540,10 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 29.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 30.
  [3]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-66.
+67.
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
@@ -552,17 +552,17 @@ nc}] [5] [6]
 <./images//trade-commander.png, id=35, 1408.26125pt x 842.14626pt>
 File: ./images//trade-commander.png Graphic file (type png)
 <use ./images//trade-commander.png>
-Package pdftex.def Info: ./images//trade-commander.png  used on input line 181.
+Package pdftex.def Info: ./images//trade-commander.png  used on input line 182.
 
 (pdftex.def)             Requested size: 312.9803pt x 187.16171pt.
 <./images//deliverance.png, id=37, 1406.25375pt x 839.135pt>
 File: ./images//deliverance.png Graphic file (type png)
 <use ./images//deliverance.png>
-Package pdftex.def Info: ./images//deliverance.png  used on input line 186.
+Package pdftex.def Info: ./images//deliverance.png  used on input line 187.
 (pdftex.def)             Requested size: 312.9803pt x 186.74855pt.
 
-[7 <./images//trade-commander.png> <./images//deliverance.png>])
-(./src/design/design.tex) [8]
+[7 <./images//trade-commander.png>] [8 <./images//deliverance.png>])
+(./src/design/design.tex)
 Overfull \hbox (18.90764pt too wide) in paragraph at lines 18--18
 []\OT1/cmr/m/n/10 SpaceTraders. \OT1/cmr/m/it/10 Space-Traders API\OT1/cmr/m/n/
 10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : $\OT1/cmtt/m/n/10 https : / / spacet
@@ -577,11 +577,11 @@ Package logreq Info: Writing requests to 'NEA.run.xml'.
 Here is how much of TeX's memory you used:
  12209 strings out of 476025
  221491 string characters out of 5790017
- 2102388 words of memory out of 5000000
+ 2100388 words of memory out of 5000000
  32553 multiletter control sequences out of 15000+600000
  515517 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,71p,1025b,1716s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 68i,6n,71p,1025b,1718s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -592,7 +592,7 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
 local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/lo
 cal/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on build/NEA.pdf (10 pages, 1215805 bytes).
+Output written on build/NEA.pdf (10 pages, 1217112 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  56 compressed objects within 1 object stream

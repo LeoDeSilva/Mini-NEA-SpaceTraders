@@ -22,6 +22,7 @@ My project will be to produce a frontend client to interact with the Space Trade
 The first decision to make regarding to this project is that of programming language – more specifically a choice between two stable, statically typed languages with strong module support and asynchronous runtimes. Go and Rust. The former (renowned for its simplicity and concurrency) would offer an expediated development cycle with an extensive standard library. Rust, however, offers memory safety, performance and a strict typing system – enforcing good programming practices. In addition to a superior multiplatform bundler for distributing the program as a single binary without dependencies. Furthermore, Rust has a more mature and documented ecosystem for Terminal User Interfaces (TUI) and Command Line Interfaces (CLI) – which I intend to explore as a means for the user to interact with the API. Below is the same program demonstrating registration with the SpaceTraders API written in Rust and Go respectively to illustrate their differences. 
 
 \subsubsection{Prototyping}
+The prototypes below go through the process of registering an agent, and handling any potential http errors – or the case wherin an agent symbol has already been taken. The agent data is stored in a HashMap with attributes corresponding to their respective json keys, and which is later serialised into the body of a http POST request. Both languages use asynchronous programming techniques to ensure the response has been recieved before processing resumes, (\texttt{async} in rust, and \texttt{defer} in go). The response is then deserialised into a HashMap and is checked for errors (in which case the applicable error is neatly printed) – else the agent's token is output to the console and the agent has been registered successfully.
 \begin{lstlisting}[language=C]
 use std::collections::HashMap;
 use reqwest::{Client, Error};
@@ -100,7 +101,7 @@ type Register struct {
 func main() {
     body, err := json.Marshal(map[string]string{
         "symbol": "TRUCKER",
-	 "faction": "COSMIC",
+	    "faction": "COSMIC",
     }) 
 
     if err != nil {
@@ -172,7 +173,7 @@ curl --request POST \
    }'
 \end{lstlisting}
 
-However, there are 2 versions of the SpaceTraders API in production, the complete V1, and the alpha V2 release. The former is a simpler system, more mature, and has a wider variety of existing frontend clients to learn from. Yet lacks much of the functionality of the second release.  Whereas V2 consists of a larger universe, a wider breadth of features, and comprehensive documentation. (\textcite{spacetraders}) Thus, my project will utilise the V2 API specification albeit hesitant of potential bugs due to the alpha nature of its release. 
+However, there are 2 versions of the SpaceTraders API in production, the complete V1, and the alpha V2 release. The former is more stable due to its maturity, and has a wider variety of available resources: including frontend clients and tutorials to learn from. Yet it lacks much of the expanded functionality of the second release and is no longer actively maintained. Whereas V2 consists of a larger universe, a wider breadth of expanded features, and more comprehensive documentation. (\textcite{spacetraders}) Thus, my project will utilise the V2 API specification albeit hesitant of potential bugs due to the alpha nature of its release. 
 
 \subsection{Existing Systems}
 There are various existing frontends that use either a command line interface (CLI), or a graphical user interface (GUI) to interract with the SpaceTraders API. A command line interface (as illustrated below) allows for expediated development, however can appear confusing, intimidating, and untintuitive without experience, wheras a GUI whilst visually intuitive, offers less flexibility and a slower development cycle. A common thread between all clients is the manner in which systems distill the complex http queries into a simpler interface when interacting with the server.
@@ -187,7 +188,7 @@ Trade Commander (\textcite{tradecommander}) is a CLI client for the SpaceTraders
 
 Deliverance (\textcite{deliverance}) took a different approach, opting for a graphical UI, synthesising the http requests required to interact with the API into a series of menus and buttons that are intuitive to work with. Stumblinbear has organised the available operations into 4 categories: Home, Ships, Systems, and Market. This has the advantage of being comparatively easy to work with, however will slow down development due to the resources needed to create a graphical interface and limits the flexibility of the system when adding new functionality.
 
-In conclusion, I will look at approaching my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements, creating a more 'retro' aesthetic that suits the nature of the game. 
+In conclusion, I will look at approaching my frontend similarly to that of Trade Commander, with an interspersion of textual and graphical elements thus utilising the respective advantages of both GUIs and CLIs: allowing for both a simple and easy to understand visualisation of your fleet, and complex commands that can be entered with comparative ease. Furthermore this creates a more 'retro' aesthetic that suits the nature of the game. 
 
 \subsection{Client Proposal}
 My client for this project will be someone with at least a basic understanding of the command line, and new to the game of SpaceTraders. The set of features I will propose is as following:
