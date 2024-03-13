@@ -199,7 +199,6 @@ My client for this project will be someone with at least a basic understanding o
     \item The ability to take out and repay loans.
     \item The ability to manage one's mining operations.
     \item The ability to visually display a map of the star system.
-    \item The ability to query \& display data logically \textit{(e.g. sort available ships by price)}
 \end{enumerate}
 
 My system will use integrate aspects of both a CLI and GUI. The console permits the flexibility of input that is limited by a GUI, and the graphical interface can display the results of such commands or other relevant information to the user, including but not limited too: a map of the star system, the progress of ongoing mining operations, any pending loans etc... My system will include means of querying data from the API which can be sorted and displayed according to the user's requirements, such as ordering loans by their reward, or displaying all unsold ships in the system. 
@@ -213,4 +212,35 @@ I will interview my client about their experience playing Space Traders, and gat
     \item Which part of the game did you find the most difficult to understand? And what could have helped you understand it better?
     \item Did you find a graphical interface improved your understanding of the game?
     \item Would you have found a tutorial system beneficial to your enjoyment when first starting out with Space Traders? 
+    \item Which of the above clients appeals the most to your tastes? And what did you like about it?
+\end{enumerate}
+
+\subsection{Objectives}
+\begin{enumerate}
+    \item \textbf{Interface \& Interaction}
+    \begin{enumerate}
+        \item The program should run in the form of a Terminal User Interface (TUI). (\textit{1.4 Existing Systems})
+        \item A CLI console should be used to enter commands and manage one's fleet. (\textit{1.4 Existing Systems})
+        \item Information regarding the star system and ongoing operations should be communicated both textually and through a graphical interface. (\textit{1.5.1 Client Interview})
+        \item The program should support the SpaceTraders V2 API specification (\textit{1.3 API})
+    \end{enumerate}
+
+    \item \textbf{Functionality}
+    \begin{enumerate}
+        \item Users should be able to register a new agent, or login to an existing agent with an API token. (\textit{1.1 Problem Defenition})
+        \item Users should be able to takeout and repay their loans as well as viewing their existing loans through the console. (\textit{1.1 Problem Defenition})
+        \item Users should be able to manage their fleet, browse, and purchase ships as well as carrying out mining operations. (\textit{1.1 Problem Defenition})
+        \item Users should be able to view a visual map of the star system \& visited waypoints. (\textit{1.5.1 Client Interview})
+    \end{enumerate}
+    \end{enumerate}
+
+\subsection{Data Modelling}
+Maintaining program state through a series of compound data structures – representing various aspects of the system such as an agent, ship or loan - is vital to creating a program that achieves the objectives outlined above. JSON responses from http queries, must be parsed into organised structs with which the program can interact through a series of predefined methods \& public attributes. Structs must be created for Loans, Ships, Agents, Waypoints, \& Systems, the struct for the Agent class might be as described below:
+\begin{enumerate}
+    \item The agent's API access token.
+    \item The agent's current waypoint location.
+    \item An array of the agent's previously visited waypoints.
+    \item The agent's current loan ID \& resource required for completion.
+    \item The ID's of all the agent's owned ships.
+    \item The number of credits possessed by an agent.
 \end{enumerate}
