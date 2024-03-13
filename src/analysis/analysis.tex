@@ -238,9 +238,22 @@ I will interview my client about their experience playing Space Traders, and gat
 Maintaining program state through a series of compound data structures – representing various aspects of the system such as an agent, ship or loan - is vital to creating a program that achieves the objectives outlined above. JSON responses from http queries, must be parsed into organised structs with which the program can interact through a series of predefined methods \& public attributes. Structs must be created for Loans, Ships, Agents, Waypoints, \& Systems, the struct for the Agent class might be as described below:
 \begin{enumerate}
     \item The agent's API access token.
-    \item The agent's current waypoint location.
     \item An array of the agent's previously visited waypoints.
     \item The agent's current loan ID \& resource required for completion.
     \item The ID's of all the agent's owned ships.
     \item The number of credits possessed by an agent.
+\end{enumerate}
+A similar description for the ship class would be as follows:
+\begin{enumerate}
+    \item The ship's flight mode (CRUISE, BURN, DRIFT, STEALTH).
+    \item The ship's waypoint marker.
+    \item The ship's fuel level.
+    \item The ship's current cargo.
+    \item The ship's maximum weight – and the current weight of cargo.
+\end{enumerate}
+A waypoint struct may store:
+\begin{enumerate}
+    \item The waypoint's x,y coordinates.
+    \item The waypoints symbolic name.
+    \item Traits for that particular waypoint e.g. (MARKETPLACE, SHIPYARD).
 \end{enumerate}
