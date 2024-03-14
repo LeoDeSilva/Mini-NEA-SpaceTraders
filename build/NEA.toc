@@ -6,9 +6,9 @@
 \contentsline {subsection}{\numberline {1.4}Existing Systems}{7}{}%
 \contentsline {subsection}{\numberline {1.5}Client Proposal}{8}{}%
 \contentsline {subsubsection}{\numberline {1.5.1}Client Interview}{9}{}%
-\contentsline {subsection}{\numberline {1.6}Objectives}{9}{}%
-\contentsline {subsection}{\numberline {1.7}Data Modelling}{9}{}%
-\contentsline {section}{\numberline {2}Design}{10}{}%
-\contentsline {section}{\numberline {3}Technical Solution}{10}{}%
-\contentsline {section}{\numberline {4}Testing}{10}{}%
-\contentsline {section}{\numberline {5}Evaluation}{10}{}%
+\contentsline {subsection}{\numberline {1.6}Objectives}{10}{}%
+\contentsline {subsection}{\numberline {1.7}Data Modelling}{11}{}%
+\contentsline {section}{\numberline {2}Design}{12}{}%
+\contentsline {section}{\numberline {3}Technical Solution}{12}{}%
+\contentsline {section}{\numberline {4}Testing}{12}{}%
+\contentsline {section}{\numberline {5}Evaluation}{12}{}%

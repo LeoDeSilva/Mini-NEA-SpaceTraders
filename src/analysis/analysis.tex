@@ -194,6 +194,9 @@ In conclusion, I will look at approaching my frontend similarly to that of Trade
 My client for this project will be someone with at least a basic understanding of the command line, and new to the game of SpaceTraders. The set of features I will propose is as following:
 \begin{enumerate}
     \item A Terminal User Interface (TUI) comprising of a command line and graphical interface.
+        \begin{enumerate}
+            \item The CLI allow the user to input commands and manage their fleet, as well as displaying their respective output in a neatly organised manner. An example use of how one might use the CLI to direct a ship with \texttt{ship\_id: 2} to \texttt{waypoint: X1-QT13-H53} would be \texttt{ship fly --ship\_id 2 --waypoint X1-QT13-H53}
+        \end{enumerate}
     \item The ability to register or login to an account using an access token.
     \item The ability to purchase ships and manage one's fleet.
     \item The ability to take out and repay loans.
@@ -206,54 +209,86 @@ My system will use integrate aspects of both a CLI and GUI. The console permits 
 \subsubsection{Client Interview}
 I will interview my client about their experience playing Space Traders, and gather their thoughts on the frontends they have used. Here are the questions I intend to ask:
 \begin{enumerate}
-    \item Have you ever played a game of Space Traders?
-    \item Which features of your client(s) did you like?
-    \item Which features of your client(s) did you dislike?
-    \item Which part of the game did you find the most difficult to understand? And what could have helped you understand it better?
-    \item Did you find a graphical interface improved your understanding of the game?
-    \item Would you have found a tutorial system beneficial to your enjoyment when first starting out with Space Traders? 
-    \item Which of the above clients appeals the most to your tastes? And what did you like about it?
+    \item Have you ever played a game of Space Traders? \\
+        \textit{"I have played through the tutorial, to get an idea of what the game is. But I'm not a regular player. I still don't understand how most of the systems actually work.}
+    \item Which features of your client(s) did you like? \\ 
+        \textit{"I'm already pretty used to a command line, so I liked how quick it was to anything done. There was a command for everything, and they displayed the results in a nice and organised manner (2.2, 2.3). I also thought the design suited nature of the game pretty well – like one of those 80's text adventure games with the green and black terminal font. (1.1.1)"}
+    \item Which features of your client(s) did you dislike? \\ 
+        \textit{"I didn't like how difficult it was to get started, the HELP command didn't even list all the available commands, I needed to have the documentation open on the side to get anywhere! I also didn't like how it made you input your token for every single request. (2.1.1)"}
+    \item Which part of the game did you find the most difficult to understand? And what could have helped you understand it better?\\
+        \textit{"I still don't understand how complicated it is to get anywhere, you have to set a flight mode, dock your ship – and it becomes tedious to get anywhere in a reasonable time. (2.3.1)" }
+    \item Did you find a graphical interface improved your understanding of the game?\\
+        \textit{"I liked seeing the place's I'd been, and it gave a nice visual way of seeing how far i'd come since I started. Although I found that just the starmap was a little dull, especially when it was nearly empty. I liked how the view changed based on different commands, like to show the available ships or loans. (1.3)"}
+    \item Would you have found a tutorial system beneficial to your enjoyment when first starting out with Space Traders? \\
+        \textit{"I think SpaceTraders own tutorial is pretty overwhelming, but if the frontend is well intuitive its pretty maneagable. I think the main thing is, especially when you're using a CLI, having a quick breakdown of all the comamnds you can use, and the parameters they require goes a long way."}
+    \item Which of the above clients appeals the most to your tastes? And what did you like about it?\\
+        \textit{"I mean, I used the second one because I liked the way it looked. But it's quite unstable and opaque. I think if i'd started with the first one I might've understood the game a little better."}
 \end{enumerate}
 
 \subsection{Objectives}
 \begin{enumerate}
     \item \textbf{Interface \& Interaction}
     \begin{enumerate}
-        \item The program should run in the form of a Terminal User Interface (TUI). (\textit{1.4 Existing Systems})
+        \item The program should run as a Terminal User Interface (TUI). (\textit{1.4 Existing Systems})
+            \begin{enumerate}
+                \item The program should be designed in the style of an 80's text adventure game with textual interfaces.
+            \end{enumerate}
         \item A CLI console should be used to enter commands and manage one's fleet. (\textit{1.4 Existing Systems})
+            \begin{enumerate}
+                \item The program should be able to take, sanitise and process user input, distilling it into a series of http requests required to complete the desired task. 
+                \item The program should be able to serialise the results of such requests and communicate any relevant information textually to the user through the console.
+            \end{enumerate}
         \item Information regarding the star system and ongoing operations should be communicated both textually and through a graphical interface. (\textit{1.5.1 Client Interview})
+            \begin{enumerate}
+                \item The graphical display should show a map of visited waypoints, as well as information about the current waypoint.
+            \end{enumerate}
         \item The program should support the SpaceTraders V2 API specification (\textit{1.3 API})
     \end{enumerate}
 
     \item \textbf{Functionality}
     \begin{enumerate}
         \item Users should be able to register a new agent, or login to an existing agent with an API token. (\textit{1.1 Problem Defenition})
+            \begin{enumerate}
+                \item Should the user register a new agent, the program should store their API token to streamline future requests.
+                \item A prompt should be shown for the user to enter their agent symbol and the program should handle the case wherin a symbol is already taken.
+            \end{enumerate}
         \item Users should be able to takeout and repay their loans as well as viewing their existing loans through the console. (\textit{1.1 Problem Defenition})
+            \begin{enumerate}
+                \item When queried, a textual list of all available loans with their respective reward and resource required should be shown.
+                \item The user should be able to take out a loan, and repay such a loan through a series of console commands. 
+                \item The resource required, and reward for completion of the current loan should be displayed to the user with a single command.
+            \end{enumerate}
         \item Users should be able to manage their fleet, browse, and purchase ships as well as carrying out mining operations. (\textit{1.1 Problem Defenition})
+            \begin{enumerate}
+                \item Users should be able to navigate \& dock their ships to a waypoint as well as viewing a list of all waypoints within warping distance with the current fuel level.
+                \item Users should be able to list the contents of a particular shipyard when docked there – and view with a brief overview of the price, speed, defences, weapons and capacity of any ships.
+                \item Users should be able to purchase a ship from a shipyard and manage the state of all the ships in their fleet.
+            \end{enumerate}
         \item Users should be able to view a visual map of the star system \& visited waypoints. (\textit{1.5.1 Client Interview})
     \end{enumerate}
     \end{enumerate}
 
 \subsection{Data Modelling}
 Maintaining program state through a series of compound data structures – representing various aspects of the system such as an agent, ship or loan - is vital to creating a program that achieves the objectives outlined above. JSON responses from http queries, must be parsed into organised structs with which the program can interact through a series of predefined methods \& public attributes. Structs must be created for Loans, Ships, Agents, Waypoints, \& Systems, the struct for the Agent class might be as described below:
-\begin{enumerate}
-    \item The agent's API access token.
-    \item An array of the agent's previously visited waypoints.
-    \item The agent's current loan ID \& resource required for completion.
-    \item The ID's of all the agent's owned ships.
-    \item The number of credits possessed by an agent.
-\end{enumerate}
-A similar description for the ship class would be as follows:
-\begin{enumerate}
-    \item The ship's flight mode (CRUISE, BURN, DRIFT, STEALTH).
-    \item The ship's waypoint marker.
-    \item The ship's fuel level.
-    \item The ship's current cargo.
-    \item The ship's maximum weight – and the current weight of cargo.
-\end{enumerate}
-A waypoint struct may store:
-\begin{enumerate}
-    \item The waypoint's x,y coordinates.
-    \item The waypoints symbolic name.
-    \item Traits for that particular waypoint e.g. (MARKETPLACE, SHIPYARD).
-\end{enumerate}
+\begin{lstlisting}
+Agent:
+    * The agent's API access token.
+    * An array of the agent's previously visited waypoints.
+    * The agent's current loan ID \& resource required for completion.
+    * The ID's of all the agent's owned ships.
+    * The number of credits possessed by an agent.
+\end{lstlisting}
+A similar description for the ship, and waypoint class would be as follows:
+\begin{lstlisting}
+Ship:
+    * The ship's flight mode (CRUISE, BURN, DRIFT, STEALTH).
+    * The ship's waypoint marker.
+    * The ship's current fuel level.
+    * The ship's current cargo.
+    * The ship's maximum weight, and the current weight of cargo.
+
+Waypoint:
+    * The waypoint's x,y coordinates.
+    * The waypoints symbolic name.
+    * Traits for that particular waypoint e.g. (MARKETPLACE, SHIPYARD).
+\end{lstlisting}
