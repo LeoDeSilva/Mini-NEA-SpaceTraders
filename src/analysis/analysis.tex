@@ -196,12 +196,34 @@ My client for this project will be someone with at least a basic understanding o
     \item A Terminal User Interface (TUI) comprising of a command line and graphical interface.
         \begin{enumerate}
             \item The CLI allow the user to input commands and manage their fleet, as well as displaying their respective output in a neatly organised manner. An example use of how one might use the CLI to direct a ship with \texttt{ship\_id: 2} to \texttt{waypoint: X1-QT13-H53} would be \texttt{ship fly --ship\_id 2 --waypoint X1-QT13-H53}
+            \item The output of commands will either be communicated textually through the console, or by updating the graphical display. An example command of the former type may be listing all ships present in a particular shipyard, and for the latter – moving between systems will update the star map.
         \end{enumerate}
     \item The ability to register or login to an account using an access token.
-    \item The ability to purchase ships and manage one's fleet.
+        \begin{enumerate}
+            \item The user will be welcomed with a prompt to either login to an existing account (by providing their access token), or to create a new account.
+            \item Should they opt to create a new account, they will be presented with another prompt to enter their desired agent symbol, and the case wherin a symbol has already been taken will be handled.
+        \end{enumerate}
+    \item The ability to purchase ships and manage one's fleet through various commands including:
+        \begin{enumerate}
+            \item Displaying a list of waypoints or systems within reach of a ship - taking into consideration the ship's speed and fuel level.
+            \item Navigating between available systems and waypoints, this will take into consideration the fuel of the ship and will update the graphical display to show both the current system/waypoint and previously visited waypoints.
+            \item The ability to view the contents of a shipyard, and purchase the desired ship with credits. 
+        \end{enumerate}
     \item The ability to take out and repay loans.
+        \begin{enumerate}
+            \item With a command, you will be able to view all availabe loans, their expiration date, resource required, and credits rewarded.
+            \item Similarly, you will also be able to accept loans and view your current loan through the graphical interface.
+        \end{enumerate}
     \item The ability to manage one's mining operations.
+        \begin{enumerate}
+            \item You will be able to view the cargo of any paritcular ship, and the being used to carry it. 
+            \item Ship's will be able to mine resources from asteroids and add the resource to their cargo – the ship exceeds its weight limit.
+            \item You will be able to sell cargo at various markets throughout the universe for market prices and collect the credits.
+        \end{enumerate}
     \item The ability to visually display a map of the star system.
+        \begin{enumerate}
+            \item The graphical display will show the current system and all of its waypoints, as well as indicating the locations of any ships in your fleet (a bolder marker will be used to indicate a waypoint with a ship present, a dim grey marker an unexplored waypoint, and a lighter grey waypoint a previously visited one).
+        \end{enumerate}
 \end{enumerate}
 
 My system will use integrate aspects of both a CLI and GUI. The console permits the flexibility of input that is limited by a GUI, and the graphical interface can display the results of such commands or other relevant information to the user, including but not limited too: a map of the star system, the progress of ongoing mining operations, any pending loans etc... My system will include means of querying data from the API which can be sorted and displayed according to the user's requirements, such as ordering loans by their reward, or displaying all unsold ships in the system. 
@@ -254,17 +276,20 @@ I will interview my client about their experience playing Space Traders, and gat
             \end{enumerate}
         \item Users should be able to takeout and repay their loans as well as viewing their existing loans through the console. (\textit{1.1 Problem Defenition})
             \begin{enumerate}
-                \item When queried, a textual list of all available loans with their respective reward and resource required should be shown.
+                \item When queried, a textual list of all available loans with their respective reward and resource required should be shown. \texttt{loans --list}
                 \item The user should be able to take out a loan, and repay such a loan through a series of console commands. 
-                \item The resource required, and reward for completion of the current loan should be displayed to the user with a single command.
+                \item The resource required, and reward for completion of the current loan should be displayed to the user with a single command. \texttt{loans repay --loan\_id 0 -- resource IRON\_ORE --ammount 5}
             \end{enumerate}
         \item Users should be able to manage their fleet, browse, and purchase ships as well as carrying out mining operations. (\textit{1.1 Problem Defenition})
             \begin{enumerate}
-                \item Users should be able to navigate \& dock their ships to a waypoint as well as viewing a list of all waypoints within warping distance with the current fuel level.
+                \item Users should be able to navigate \& dock their ships to a waypoint as well as viewing a list of all waypoints within warping distance with the current fuel level through commands such as \texttt{ship set-flight CRUISE --ship\_id 2} or \texttt{waypoints --list}.
                 \item Users should be able to list the contents of a particular shipyard when docked there – and view with a brief overview of the price, speed, defences, weapons and capacity of any ships.
                 \item Users should be able to purchase a ship from a shipyard and manage the state of all the ships in their fleet.
             \end{enumerate}
         \item Users should be able to view a visual map of the star system \& visited waypoints. (\textit{1.5.1 Client Interview})
+            \begin{enumerate}
+                \item The display will show the state of your current system with a bolder marker  used to indicate a waypoint with a ship present, a dim grey marker an unexplored waypoint, and a lighter grey waypoint a previously visited one.
+            \end{enumerate}
     \end{enumerate}
     \end{enumerate}
 
@@ -292,3 +317,4 @@ Waypoint:
     * The waypoints symbolic name.
     * Traits for that particular waypoint e.g. (MARKETPLACE, SHIPYARD).
 \end{lstlisting}
+There will be a \texttt{GameState} struct containing references to the objects defined above, and will be passed by reference as a parameter to functions, in turn, managing the state of the program through the centralised structure. 
