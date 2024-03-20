@@ -16,7 +16,6 @@ struct GameState {
 \end{lstlisting}
 
 The Agent class will store all account information that may be displayed through the interface or required for API calls, including: the agent's symbolic name, API token, current loan, and credits. It also contains a vector of Ships composing the fleet, thus mitigating the need for querying the API every time information is requested – and the structs only have to be rebuilt when performing modifying requests – thus reducing latency by minimising requests.
-
 \begin{lstlisting}
 struct Agent {
     token: &str, 
@@ -28,7 +27,6 @@ struct Agent {
 \end{lstlisting}
 
 The Agent class contains references to both the \texttt{Ship}, and \texttt{Loan} classes defined by the specification below. Both will be created to parse the json response of a request into an organised structure, and stored to later be queried when users request information on their fleet or loans.
-
 \begin{lstlisting}
 enum FlightMode {
     CRUISE,
@@ -58,7 +56,6 @@ struct Loan {
 \end{lstlisting}
 
 A similar interface definition of the \texttt{Waypoint} struct can be created. Instances of these will be stored in a vector attribute of the \texttt{GameState} struct, and used to visually display a map of the star system, as well as to be referenced by ships to indicate their current position.
-
 \begin{lstlisting}
 enum Trait {
     SHIPYARD,
