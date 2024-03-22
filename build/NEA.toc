@@ -10,6 +10,12 @@
 \contentsline {subsection}{\numberline {1.7}Data Modelling}{12}{}%
 \contentsline {section}{\numberline {2}Design}{12}{}%
 \contentsline {subsection}{\numberline {2.1}Data Design}{14}{}%
-\contentsline {section}{\numberline {3}Technical Solution}{15}{}%
-\contentsline {section}{\numberline {4}Testing}{15}{}%
-\contentsline {section}{\numberline {5}Evaluation}{15}{}%
+\contentsline {subsection}{\numberline {2.2}Screen Layouts}{15}{}%
+\contentsline {subsection}{\numberline {2.3}Key Algorithms}{16}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Managing \& Purchasing a Ship}{16}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Listing Waypoints containing a Shipyard}{16}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}Listing the contents of a Shipyard}{17}{}%
+\contentsline {subsubsection}{\numberline {2.3.4}Purchasing a ship from a Shipyard}{17}{}%
+\contentsline {section}{\numberline {3}Technical Solution}{17}{}%
+\contentsline {section}{\numberline {4}Testing}{17}{}%
+\contentsline {section}{\numberline {5}Evaluation}{17}{}%

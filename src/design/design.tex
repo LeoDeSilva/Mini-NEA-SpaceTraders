@@ -3,11 +3,11 @@ The system will be a frontend for a user to interact with the SpaceTraders API t
 
 
 \shadowbox{
-    \includegraphics[angle=90, origin=c, width=12cm]{system-diagram.png}
+    \includegraphics[angle=90, origin=c, width=11cm]{system-diagram.png}
 }
 
 \subsection{Data Design}
-I will parse the JSON responses from http requests into a series of structs which can be passed as parameters to maintain state. A \texttt{GameState} class will hold references to the other classes required for API calls, or communicating information to the user and will be defined as below. The waypoints vector will be used for displaying a graphical star map on the right of the screen, and the Agent reference, for storing the symbolic name and token key for future API requests.
+Data entering the system will be queried from the SpaceTraders API, and the JSON responses from http requests will have to be parsed into a series of structs which can be passed as parameters to maintain state. A \texttt{GameState} class will hold references to the other classes required for API calls, or communicating information to the user and will be defined as below. The waypoints vector will be used for displaying a graphical star map on the right of the screen, and the Agent reference, for storing the symbolic name and token key for future API requests.
 \begin{lstlisting}
 struct GameState {
     agent: &Agent,
@@ -69,3 +69,41 @@ struct Waypoint {
     trails: Vec<Trait>,
 }
 \end{lstlisting}
+These data structures will store the parsed JSON from the SpaceTraders requests, and will be passed around as state through references from the \texttt{GameState} struct which will display the required data contained within these structs to the user. 
+
+\subsection{Screen Layouts}
+The Terminal User Interface (TUI) will be split into 4 main components, the header – containing the application title, agent symbol, and current loan; the console - containing a history of previous commands and their textual output; a prompt - where the user will enter commands; and the graphical display - where information regarding the SpaceTraders star system such as waypoints and ship locations can be communicated.
+
+\shadowbox{
+    \includegraphics[width=11cm]{frontend-mockup.png}
+}
+
+\subsection{Key Algorithms}
+\subsubsection{Managing \& Purchasing a Ship}
+The first algorithm will handle the process of purchasing a ship - and consist of locating nearby shipyards, listing the ships contained within a particular shipyard given by its waypoint symbol, and purchasing the desired ship from said shipyard. The algorithm can be decomposed into the following tasks:
+
+\bigskip
+
+\shadowbox{
+    \includegraphics[width=11cm]{algorithm.png}
+}
+
+\subsubsection{Listing Waypoints containing a Shipyard}
+The first part of the algorithm consists of performing a parameterised get request, setting \texttt{shipyard} as a trait required for the JSON of such a waypoint to be returned. The algorithm will then parse this data into a structure, and print it to the console. The format wil be the waypoint's type, symbol, coordinates and then a list of traits e.g. (SHIPYARD, VOLCANIC, etc..). The following pseudocode will represent this algorithm:
+\begin{lstlisting}[language=C]
+PROCEDURE ListWaypoints(STRING trait)
+    response <- GET https:/api.spacetraders.io/v2/systems/X1-ZB92/waypoints?traits={trait}
+
+    FOR waypointJSON IN response DO 
+        waypoint = Waypoint::FROM(waypointJSON)
+
+        OUTPUT "{waypoint.symbol} - {waypoint.type}, ({waypoint.x}, {waypoint.y}):" 
+        FOR trait in waypoint.traits DO
+            OUTPUT "*{trait.symbol}\n"
+        END
+    END
+ENDPROCEDURE
+\end{lstlisting}
+\subsubsection{Listing the contents of a Shipyard}
+The second part of the algorithm will list the contents of a particular shipyard (given by user input), and will involve the same process of parsing the JSON repsonse into a series of structs, with which an easy to digest decomposition of all the ships and their features can be displayed through the console.
+\subsubsection{Purchasing a ship from a Shipyard}
