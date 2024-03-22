@@ -91,7 +91,7 @@ The first algorithm will handle the process of purchasing a ship - and consist o
 \subsubsection{Listing Waypoints containing a Shipyard}
 The first part of the algorithm consists of performing a parameterised get request, setting \texttt{shipyard} as a trait required for the JSON of such a waypoint to be returned. The algorithm will then parse this data into a structure, and print it to the console. The format wil be the waypoint's type, symbol, coordinates and then a list of traits e.g. (SHIPYARD, VOLCANIC, etc..). The following pseudocode will represent this algorithm:
 \begin{lstlisting}[language=C]
-PROCEDURE ListWaypoints(STRING trait)
+PROCEDURE ListWaypointsWithTrait(STRING trait)
     response <- GET https:/api.spacetraders.io/v2/systems/X1-ZB92/waypoints?traits={trait}
 
     FOR waypointJSON IN response DO 
@@ -106,4 +106,38 @@ ENDPROCEDURE
 \end{lstlisting}
 \subsubsection{Listing the contents of a Shipyard}
 The second part of the algorithm will list the contents of a particular shipyard (given by user input), and will involve the same process of parsing the JSON repsonse into a series of structs, with which an easy to digest decomposition of all the ships and their features can be displayed through the console.
+\begin{lstlisting}
+FUNCTION ListShipyardContents() RETURNS Ship[]
+    waypoint <- INPUT "Enter a waypoint symbol:"
+    response <- GET https://api.spacetraders.io/v2/systems/X1-ZB92/waypoints/{waypoint}/shipyard'
+
+    Ships <- []
+    FOR shipJSON in response["ships"] DO 
+        ship <- Ship::FROM(shipJSON)
+        OUTPUT """
+        {ship.type} {ship.name} {ship.price}
+        {ship.description}
+        """
+        Ships.push(ship)
+    END
+
+    RETURN Ships
+ENDFUNCTION
+\end{lstlisting}
 \subsubsection{Purchasing a ship from a Shipyard}
+Finally, after the the contents of a particular shipyard has been listed and the user has made a decision on which to purchase, they will be prompted for the type of the ship they wish to purchase. Then before the post request is made, the user's credits will be checked against the price of the ship - and a suitable message will be output if they do not have the funds. Else, a http post request will be sent to the SpaceTraders API to purchase the ship. 
+\begin{lstlisting}
+PROCEDURE PurchaseShip(GameState)
+    ShipType <- INPUT "Enter the ship you wish to purchase:"
+    IF GameState.agent.credits < ships["ship_type"].price
+        OUTPUT "You do not have sufficient funds to purchase this ship"
+    ELSE 
+        POST --url 'https://api.spacetraders.io/v2/my/ships'
+        --header 'Content-Type: application/json'
+        --data '{
+           "shipType": "{ShipType}",
+           "waypointSymbol": "{Waypoint}"
+          }'
+    ENDIF
+ENDPROCEDURE
+\end{lstlisting}

@@ -15,7 +15,7 @@
 \contentsline {subsubsection}{\numberline {2.3.1}Managing \& Purchasing a Ship}{16}{}%
 \contentsline {subsubsection}{\numberline {2.3.2}Listing Waypoints containing a Shipyard}{16}{}%
 \contentsline {subsubsection}{\numberline {2.3.3}Listing the contents of a Shipyard}{17}{}%
-\contentsline {subsubsection}{\numberline {2.3.4}Purchasing a ship from a Shipyard}{17}{}%
-\contentsline {section}{\numberline {3}Technical Solution}{17}{}%
-\contentsline {section}{\numberline {4}Testing}{17}{}%
-\contentsline {section}{\numberline {5}Evaluation}{17}{}%
+\contentsline {subsubsection}{\numberline {2.3.4}Purchasing a ship from a Shipyard}{18}{}%
+\contentsline {section}{\numberline {3}Technical Solution}{18}{}%
+\contentsline {section}{\numberline {4}Testing}{18}{}%
+\contentsline {section}{\numberline {5}Evaluation}{18}{}%
